@@ -1,0 +1,13 @@
+#Test Connection with managed nodes
+--- 
+- name: Test Connection
+  hosts: appServers
+  tasks:
+  - name: ManagedNodes connection Test
+    remote_user: "{{name}}"
+    ping:
+  - name: verify connection
+    debug:
+     msg: "host machines {{name}} connected successfully"
+...
+

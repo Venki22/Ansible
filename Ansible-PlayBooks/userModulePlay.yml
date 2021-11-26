@@ -1,0 +1,16 @@
+---
+- hosts: appServers
+  become: true
+  tasks:
+  - name: Creating group management
+    group:
+     name: testing
+     state: present
+     gid: 2023
+  - name: creating user management
+    user:
+     name: sunil
+     group: testing
+     state: present
+
+

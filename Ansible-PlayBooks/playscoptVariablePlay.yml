@@ -1,0 +1,17 @@
+#Playscope variables are definined within the playbook and thet can effect only in one single play.
+---
+- name: playscope varialbe
+  hosts: appServers
+  become: true
+  vars:
+    a: git
+    b: absent
+    #c: yes
+  tasks:
+  - name: Install git
+    package:
+      name: "{{a}}"
+      state: "{{b}}"
+      # update_cache: "{{c}}"
+...
+

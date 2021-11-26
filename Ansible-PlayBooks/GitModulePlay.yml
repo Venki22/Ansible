@@ -1,0 +1,10 @@
+---
+- hosts: appServers
+  tasks:
+  - name: This is used to perform git version controlling on the managed nodes.
+    git:
+      repo: https://github.com/Venki22/sampletest.git
+      dest: /tmp/mygits
+      clone: yes
+      update: no
+...

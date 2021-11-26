@@ -1,0 +1,9 @@
+---
+- hosts: appServers
+  tasks:
+  - name: Copy files from host to ansible machine
+    fetch:
+      src: /home/ec2-user/file4.txt
+      dest: /tmp/
+      fail_on_missing: no
+...

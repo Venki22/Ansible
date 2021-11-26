@@ -1,0 +1,12 @@
+---
+- name: File is ReplaceModulePlay.yml
+  hosts: appServers
+  tasks:
+  - name: This is used for replacing a specific string with other string
+    replace:
+      regexp: areee
+      replace: Was
+      path: /home/ansible/file22
+      backup: yes
+...
+  

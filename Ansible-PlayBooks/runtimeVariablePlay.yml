@@ -1,0 +1,10 @@
+#File name is InstallUnstallPackage_vars.yml
+---
+- hosts: appServers
+  tasks:
+  - name: Install and Unstall
+    package:
+      name: "{{name}}"
+      state: "{{state}}"
+      #update_cache: "{{update_cache}}"
+...

@@ -1,0 +1,43 @@
+---
+- hosts: 172.31.0.31
+  become: true
+  tasks:
+  - name: Install tree
+    package:
+      name: tree
+      state: latest
+      update_cache: true
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Install git
+    yum:
+      name: git
+      state: latest
+      update_cache: true
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: latest
+      update_cache: true
+  - name: start httpd service
+    service:
+      name: httpd
+      state: started
+  - name: create a file with content
+    copy:
+      dest: /tmp/index.html
+      content: |
+              This is httpd service
+  - name: copy files
+    copy:
+      src: /tmp/index.html
+      dest: /var/www/html/index.html
+  - name: print  message
+    debug:
+      msg: "{{name}} has been installed and started service under port {{portnumber}}"
+...
+
+
+    
+

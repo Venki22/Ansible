@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+  tasks:
+  - name: Install httpd service
+    yum:
+      name: httpd
+      state: absent
+      # auto_remove: yes
+  - name: print  message
+    debug:
+      msg: "{{name}} has been removed successfully"
+
+
+    
+

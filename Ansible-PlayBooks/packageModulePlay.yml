@@ -1,0 +1,21 @@
+#This play book will start the httpd and start the service
+---
+- hosts: appServers
+  become: true
+  tasks:
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: latest
+      update_cache: yes
+  - name: start httpd
+    service:
+      name: httpd
+      #state: started
+      enabled: yes
+  - name: copy html file to host machines
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+...
+
