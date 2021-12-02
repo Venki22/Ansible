@@ -1,0 +1,25 @@
+---
+- name: Error handling
+  hosts: all
+  ignore_errors: yes
+  tasks:
+   - block:
+      - name: Install apache1
+        yum:
+         name: httpd1
+         state: present
+     rescue:
+      - name: Install httpd
+        apt:
+         name: httpd
+         state: absent
+     always:
+      - name: Check url response
+        uri:
+         url: "{{item}}"
+        with_items:
+         - http://13.234.76.141
+         - http://65.1.148.81
+         - http://172.31.2.159
+         - http://172.31.11.97
+...

@@ -1,0 +1,11 @@
+---
+- name: Groupvars Example
+  hosts: appServers
+  tasks:
+  var:
+    test: from Groupvars
+  - name: Install git
+    state: present
+    update_cache: yes
+...
+

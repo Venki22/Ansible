@@ -1,0 +1,5 @@
+test: From groupVars oppServersi
+a: wget
+b: present
+c: yes
+package: wget

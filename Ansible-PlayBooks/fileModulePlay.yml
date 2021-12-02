@@ -1,0 +1,17 @@
+---
+- name: create files and folders
+  hosts: appServers
+  become: true
+  tasks:
+  - name: Crate Direcotry
+    file:
+      path: tomcat
+      state: directory
+      owner: ec2-user
+      #user: ec2-user
+      group: ec2-user
+      mode: 0777
+...
+
+
+

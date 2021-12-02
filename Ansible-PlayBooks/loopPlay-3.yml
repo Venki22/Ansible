@@ -1,0 +1,15 @@
+---
+- name: install multiple software with multiple options
+  hosts: appServers
+  become: true
+  tasks:
+  - name: Install/uninstall software with below directions
+    yum:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+    with_items:
+    - {a: git,b: present,c: yes}
+    - {a: httpd,b: present,c: yes}
+    - {a: tree,c: present,c: yes}
+...

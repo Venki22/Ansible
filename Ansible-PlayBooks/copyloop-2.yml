@@ -1,0 +1,14 @@
+---
+- name: copy files
+  hosts: appServers
+  tasks:
+  - name: copy files-1
+    copy:
+      src: "{{item}}"
+      dest: /opt/
+      mode: 0777
+    with_items:
+    - index1.html
+    - index2.html
+...
+

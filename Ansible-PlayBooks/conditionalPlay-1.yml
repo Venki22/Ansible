@@ -1,0 +1,12 @@
+---
+- name: un-install git if conditon satisfied 
+  hosts: localhost
+  gather_facts: "{{facts}}"
+  tasks:
+  - name: Un-install "{{name}}"
+    package:
+      name: "{{name}}"
+      state: "{{state}}"
+    when:
+    - ansible_facts['distribution'] == "Amazon"
+...

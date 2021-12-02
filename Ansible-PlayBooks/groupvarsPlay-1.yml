@@ -1,0 +1,10 @@
+---
+- name: install {{package}}
+  hosts: appServers
+  become: true
+  tasks:
+  - name: Install {{package}}
+    yum:
+      name: "{{a}}"
+      state: "{{b}}"
+... 

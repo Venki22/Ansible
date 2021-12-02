@@ -1,0 +1,14 @@
+---
+- name: copy files
+  hosts: appServers
+  tasks:
+  - name: copy files-1
+    copy:
+      src: ./index1.html
+      dest: /opt/
+  - name: copy files-2
+    copy:
+      src: ./index2.html
+      dest: /tmp/
+...
+

@@ -1,0 +1,14 @@
+---
+- name: copy files
+  hosts: appServers
+  tasks:
+  - name: copy files
+    copy:
+      src: "{{item.source}}"
+      dest: "{{item.destination}}"
+      mode: "{{item.mode}}"
+    with_items:
+    - {"source": "index1.html","destination":"/tmp/","mode":"0777"}
+    - {"source": "index2.html","destination":"/tmp/","mode":"0777"}
+...
+

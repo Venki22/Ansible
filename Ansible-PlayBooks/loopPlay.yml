@@ -1,0 +1,27 @@
+#Install multiple softwares using loop
+---
+- name: Install wget,uzip,git,tree
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install wget
+    yum:
+      name: wget
+      state: removed
+      update_cache: yes
+  - name: Install unzip
+    yum:
+      name: unzip
+      state: removed
+      update_cache: yes
+  - name: Install git
+    yum:
+      name: git
+      state: removed
+      update_cache: yes
+  - name: Install tree
+    yum:
+      name: tree
+      state: removed
+      update_cache: yes
+...

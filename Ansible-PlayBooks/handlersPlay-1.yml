@@ -1,0 +1,21 @@
+---
+- name: Handlers demo
+  hosts: appServers
+  become: true
+  tasks:
+   - name: Install apache2
+     yum:
+       name: apache2
+       state: present
+       update_cache: yes
+   - name: Edit index.html file
+     copy:
+       content: "Welcome To apache2"
+       dest: /var/www/html/index.html
+     notify: restart apache2 service
+   handlers:
+   - name: restart apache2 service
+     service:
+     - name: apache2
+       state: restarted
+...

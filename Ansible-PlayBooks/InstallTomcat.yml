@@ -1,0 +1,47 @@
+---
+- name: Install Tomcat Server
+  hosts: appServers
+  become: true
+  tasks:
+  - name: Install OpenJdk
+    yum:
+      name: java-1.8.0-openjdk
+      state: present
+      update_cache: yes
+  - name: create folder
+    file:
+      path: installTomcat
+      state: directory
+      owner: ec2-user
+      group: ec2-user
+      mode:  0777
+  - name: Download Tomcat zip file
+    get_url:
+      url: https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.76/bin/apache-tomcat-7.0.76.tar.gz
+      dest: /home/ec2-user/installTomcat/
+  - name: Un-zip Tomcat zip file
+    unarchive:
+      src: /home/ec2-user/installTomcat/apache-tomcat-7.0.76.tar.gz
+      dest: /home/ec2-user/installTomcat/
+      remote_src: yes
+  - name: Giving all permission to tomcat folder including subfolders
+    file:
+      path: /home/ec2-user/installTomcat/apache-tomcat-7.0.76
+      mode: 0777
+      recurse: yes
+  - name: change port of tomcat from 8080 to 9090
+    replace:
+      regexp: 8080
+      replace: 9090
+      path: /home/ec2-user/installTomcat/apache-tomcat-7.0.76/conf/server.xml
+  - name: start Tomcat Service
+    shell:
+      chdir: /home/ec2-user/installTomcat/apache-tomcat-7.0.76/bin/
+      cmd: nohup sh catalina.sh start &
+  - name: Check url response of host machine
+    uri:
+      url: http://3.110.165.241:9090/
+  - name: install status
+    debug:
+      msg: Tomcat has been install successfully "{{name}}"
+...

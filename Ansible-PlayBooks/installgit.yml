@@ -1,0 +1,17 @@
+---
+- name: Install git with globalvariables
+  hosts: all
+  tasks:
+  - name: Install git
+    yum:
+      name: "{{gitPackage}}"
+      state: present
+  - name: check git version
+    shell: git --version
+    register: gitversion
+  - name: print
+    debug:
+      var: gitversion.stdout
+...
+
+

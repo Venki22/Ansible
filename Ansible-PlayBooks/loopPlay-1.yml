@@ -1,0 +1,15 @@
+---
+- name: Install wget,git,unzip
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install multiple packages
+    yum:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+    with_items:
+      - wget
+      - git
+      - unzip
+...

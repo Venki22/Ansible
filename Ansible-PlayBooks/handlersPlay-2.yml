@@ -1,0 +1,23 @@
+---
+- name: Confugure apache2 using handlers
+  hosts: appServers
+  force_handlers: yes
+  tasks:
+   - name: Install httpd
+     yum:
+      name: httpd
+      state: present
+      update_cache: yes
+   - name: Edit index.html file
+     copy:
+      content: "Welcome To Durgasoftt\n"
+      dest: /var/www/html/index.html
+      mode: 0777
+     notify: Restart httpd
+  handlers:
+   - name: Restart httpd
+     service:
+      name: httpd
+      state: restarted
+...
+

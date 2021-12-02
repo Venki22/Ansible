@@ -1,0 +1,8 @@
+---
+- name: Specific group vars
+  hosts: appServers
+  tasks:
+  - name: print appServers vars
+    debug:
+      var: test
+...

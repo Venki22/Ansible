@@ -1,0 +1,11 @@
+---
+- name: Install wget,unzip,git,tree
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install packages
+    yum:
+      name: ['wget','unzip','git','tree']
+      state: latest
+      update_cache: yes
+...
